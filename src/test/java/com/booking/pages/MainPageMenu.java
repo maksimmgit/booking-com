@@ -23,7 +23,7 @@ public class MainPageMenu {
     public static final By CAR_RENTAL_CSS_ACTIVE = By.cssSelector(".bui-tab__link.bui-tab__link--selected");
     //аттракционы
     public static final By ATTRACTIONS_CSS_INACTIVE = By.cssSelector("li:nth-child(5) a:nth-child(1) span:nth-child(2)");
-    public static final By ACCRACTIONS_CSS_ACTIVE = By.cssSelector("a[class='Actionable-module__root___3GRl0 Tab-module__link___vI35C Tab-module__link--selected___3qmZH'] span[class='Tab-module__text___3vSL-'] span");
+    public static final By ATTRACTIONS_CSS_ACTIVE = By.cssSelector("a[class='Actionable-module__root___3GRl0 Tab-module__link___vI35C Tab-module__link--selected___3qmZH'] span[class='Tab-module__text___3vSL-'] span");
     //такси
     private static final By AIRPORT_CSS_TAXIS_INACTIVE = By.cssSelector("li:nth-child(2) a:nth-child(1) span:nth-child(2) span:nth-child(1)");
     private static final By AIRPORT_CSS_TAXIS_ACTIVE = By.cssSelector(".bui-tab__link.bui-tab__link--selected");
