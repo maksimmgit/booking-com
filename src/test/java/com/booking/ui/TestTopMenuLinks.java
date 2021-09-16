@@ -1,8 +1,6 @@
 package com.booking.ui;
-
 import com.booking.pages.MainPageMenu;
 import org.junit.*;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -10,8 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestTopMenuLinks {
@@ -67,43 +63,37 @@ public class TestTopMenuLinks {
 
 
 
-    @Test
-    @DisplayName("Авиабилеты")
+    @Ignore
     public void test1FlightsTest(){
         MainPageMenu mainPageMenu = new MainPageMenu();
         Assert.assertTrue("CSS локатор не соответствует.", mainPageMenu.clickAndVerify(FLIGHTS_CSS_LINK_INACTIVE, FLIGHTS_CSS_LINK_ACTIVE));
     }
 
-    @Test
-    @DisplayName("Жильё")
+    @Ignore
     public void test2StaysTest(){
         MainPageMenu mainPageMenu = new MainPageMenu();
         Assert.assertTrue("CSS локатор не соответствует.", mainPageMenu.clickAndVerify(STAYS_LINK_INACTIVE, STAYS_CSS_LINK_ACTIVE));
     }
 
-    @Test
-    @DisplayName("Аренда автомобилей")
+    @Ignore
     public void test3CarRentalTest(){
         MainPageMenu mainPageMenu = new MainPageMenu();
         Assert.assertTrue("CSS локатор не соответствует.", mainPageMenu.clickAndVerify(CAR_RENTAL_CSS_INACTIVE, CAR_RENTAL_CSS_ACTIVE));
     }
 
-    @Test
-    @DisplayName("Варианты досуга")
+    @Ignore
     public void test4AttractionsTest(){
         MainPageMenu mainPageMenu = new MainPageMenu();
         Assert.assertTrue("CSS локатор не соответствует.", mainPageMenu.clickAndVerify(ATTRACTIONS_CSS_INACTIVE, ATTRACTIONS_CSS_ACTIVE));
     }
 
-    @Test
-    @DisplayName("Такси от/до аэропорта")
+    @Ignore
     public void test5AirportTaxisTest(){
         MainPageMenu mainPageMenu = new MainPageMenu();
         Assert.assertTrue("CSS локатор не соответствует.", mainPageMenu.clickAndVerify(AIRPORT_CSS_TAXIS_INACTIVE, AIRPORT_CSS_TAXIS_ACTIVE));
     }
 
-    @Test
-    @DisplayName("Перелёт и отель")
+    @Ignore
     public void test6FlightAndHotelTest(){
         MainPageMenu mainPageMenu = new MainPageMenu();
         Assert.assertTrue("CSS локатор не соответствует.", mainPageMenu.clickAndVerify(FLIGHT_AND_HOTEL_CSS_INACTIVE, FLIGHT_AND_HOTEL_CSS_ACTIVE));
