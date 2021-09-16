@@ -1,25 +1,23 @@
 package ui.core;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.concurrent.TimeUnit;
+import com.codeborne.selenide.Configuration;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 
 public class Driver {
-    private static final Integer DEFAULT_SECONDS_WAIT = 10;
-    public static WebDriver driver;
 
-    @BeforeClass
+
     public static void getDriver(){
+        System.setProperty("webdriver.chrome.silentOutput", "true");
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(DEFAULT_SECONDS_WAIT, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+        Configuration.browser = "chrome";
+        Configuration.startMaximized = true;
+        open("https://booking.com");
+        Configuration.pageLoadStrategy = "none";
+        Configuration.timeout = 50;
     }
 
-    @AfterClass
+
     public static void closeDriver(){
-        driver.close();
+        closeWebDriver();
     }
 }

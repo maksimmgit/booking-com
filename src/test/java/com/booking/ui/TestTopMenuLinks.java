@@ -36,10 +36,10 @@ public class TestTopMenuLinks {
         }
     }
 
-    @AfterClass
+/*    @AfterClass
     public static void closeDriver(){
         driver.close();
-    }
+    }*/
 
 
     /*
@@ -62,7 +62,7 @@ public class TestTopMenuLinks {
     private static final By AIRPORT_CSS_TAXIS_ACTIVE = By.cssSelector("a[class='bui-tab__link bui-tab__link--selected'] span[class='bui-tab__text']");
     //перелёт+отель
     private static final By FLIGHT_AND_HOTEL_CSS_INACTIVE = By.cssSelector("body > header:nth-child(3) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)");
-    private static final By FLIGHT_AND_HOTEL_CSS_ACTIVE = By.xpath("//title[contains(text(), \"Booking.com powered by lastminute.com\")]");
+    private static final By FLIGHT_AND_HOTEL_CSS_ACTIVE = By.xpath("//div[@class='as-oil-l-wrapper-layout-max-width']");
 
 
 
