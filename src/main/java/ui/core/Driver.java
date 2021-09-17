@@ -15,10 +15,9 @@ public class Driver {
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
         open("https://booking.com");
-        Configuration.pageLoadStrategy = "none";
-        Configuration.timeout = 50;
-    }
 
+
+    }
 
     public static void closeDriver(){
         closeWebDriver();
