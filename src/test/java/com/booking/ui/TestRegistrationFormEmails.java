@@ -10,14 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import ui.core.Driver;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-@TestMethodOrder(MethodOrderer.Alphanumeric.class)
-public class TestRegistrationForm {
-
+public class TestRegistrationFormEmails {
     static RegistrationForm registrationForm;
 
 

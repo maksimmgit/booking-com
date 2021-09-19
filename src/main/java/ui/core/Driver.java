@@ -12,8 +12,10 @@ public class Driver {
     public static void getDriver(){
         System.setProperty("webdriver.chrome.silentOutput", "true");
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("chromeoptions.args", "-incognito");
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
+        Configuration.timeout=10000;
         open("https://booking.com");
 
 
