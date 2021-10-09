@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import ui.core.Driver;
 
-public class TestRegistrationFormEmails {
+public class RegistrationFormEmailsTest {
     static RegistrationForm registrationForm;
 
 

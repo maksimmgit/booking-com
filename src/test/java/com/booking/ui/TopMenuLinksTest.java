@@ -3,24 +3,27 @@ package com.booking.ui;
 import com.booking.pages.MainPageMenuSelenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.apache.log4j.Logger;
 import org.junit.jupiter.api.*;
 import ui.core.Driver;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+import static org.apache.log4j.PropertyConfigurator.configure;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class TestTopMenuLinksSelenideTest {
+public class TopMenuLinksTest {
     static MainPageMenuSelenide mainPageMenu;
-    //static Logger logManager;
+    private static Logger logger = Logger.getLogger(TopMenuLinksTest.class);
+
 
     @BeforeAll
     public static void getDriver(){
         Driver.getDriver();
         mainPageMenu = new MainPageMenuSelenide();
-        //logManager = LogManager.getLogger(TestTopMenuLinksSelenide.class);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().savePageSource(false).screenshots(true));
+        configure("src/test/resources/log4j.properties");
     }
 
     @AfterAll
@@ -61,29 +64,29 @@ public class TestTopMenuLinksSelenideTest {
     @Test
     @Order(1)
     public void test1NewTest(){
+        logger.debug("Flights button");
         Assertions.assertTrue(mainPageMenu.clickAndVerify(Flights_Inactive,Flights_Active));
     }
-/*    @org.junit.jupiter.api.Test
-    @Order(1)
-    public void test1FlightsTest(){
-        Assertions.assertTrue(mainPageMenu.clickAndVerify(FLIGHTS_CHROME_XPATCH_INACTIVE, FLIGHTS_CHROME_XPATCH_ACTIVE), "Не соответствует");
-    }*/
 
-    @org.junit.jupiter.api.Test
+
+    @Test
     @Order(2)
     public void test2StaysTest(){
+        logger.debug("Stays button");
         Assertions.assertTrue(mainPageMenu.clickAndVerify(STAYS_XPATCH_INACTIVE, STAYS_XPATCH_ACTIVE),"CSS локатор не соответствует.");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @Order(3)
     public void test3CarRentalTest(){
+        logger.debug("Car rental button");
         Assertions.assertTrue(mainPageMenu.clickAndVerify(CAR_RENTAL_XPATCH_INACTIVE, CAR_RENTAL_XPATCH_ACTIVE),"CSS локатор не соответствует.");
     }
 
     @Test
     @Order(4)
     public void test4AttractionsTest(){
+        logger.debug("Attractions button");
         Assertions.assertTrue(mainPageMenu.clickAndVerify(ATTRACTIONS_XPATCH_INACTIVE, ATTRACTIONS_XPATCH_ACTIVE),"CSS локатор не соответствует.");
     }
 
@@ -91,6 +94,7 @@ public class TestTopMenuLinksSelenideTest {
     @Test
     @Order(5)
     public void test5AirportTaxisTest(){
+        logger.debug("Airport button");
         Assertions.assertTrue(mainPageMenu.clickAndVerify(AIRPORT_XPATCH_TAXIS_INACTIVE, AIRPORT_XPATCH_TAXIS_ACTIVE),"CSS локатор не соответствует.");
     }
 

@@ -3,14 +3,17 @@ package com.booking.pages;
 import com.codeborne.selenide.*;
 import com.codeborne.selenide.selector.ByText;
 import org.openqa.selenium.Keys;
+import org.w3c.dom.html.HTMLInputElement;
 
 import java.time.Duration;
 import java.util.Objects;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class BookingPages {
+
 
     private final SelenideElement ACCEPT_COOKIES = $x("//button[@id='onetrust-accept-btn-handler']");
 
@@ -47,6 +50,34 @@ public class BookingPages {
     private final SelenideElement HOTEL_STARS_CHECKBOX = $x("//div[@class='bui-checkbox__label filter_item css-checkbox']/span[contains(text(),'5 з')]");
     private final ElementsCollection HOTEL_STARS_CHECKER = $$x("//div[@data-class]");
     private final SelenideElement HOTEL_WAIT_ELEMENT = $("div[id='filter_filter-suggestions'] a[class='filterelement js-filter__element active'] div[class='bui-checkbox__label filter_item css-checkbox ']");
+
+
+    //chose a hotel button
+    private final SelenideElement HOTEL_CHOOSE_BUTTON = $x("//a[@data-click-store-id=\"sr-compset-7716268\"]");
+    //room quantity selector
+    private final SelenideElement ROOM_SELECTOR = $x("//select[@name='nr_rooms_771626806_335048290_4_41_0']");
+    //я бронирую
+    private final SelenideElement ROOM_BOOKING_BUTTON = $x("//span[@class='bui-button__text js-reservation-button__text']");
+
+
+    //booking first name input
+    private final SelenideElement FIRST_NAME_INPUT = $x("//input[@id='firstname']");
+    //last name input
+    private final SelenideElement LAST_NAME_INPUT = $x("//input[@id='lastname']");
+    //email input
+    private final SelenideElement EMAIL_INPUT = $x("//input[@id='email']");
+    private final SelenideElement EMAIL_INPUT_CONFIRM = $x("//input[@id='email_confirm']");
+    //radio button guest
+    private final SelenideElement RADIO_GUEST = $x("//span[@class='bui-radio__label'][contains(text(), '   Я    ')]");
+    //textarea
+    private final SelenideElement TEXTAREA = $x("//textarea[@class='bui-form__control bui-input-textarea bp-special-requests__requests js-special-requests__requests']");
+    //переход к платёжным данным
+    private final SelenideElement NEXT_BUTTON_TO_PAYMENT = $x("//span[@class='bui-button__icon bui-button__icon--end js-button__icon']");
+
+
+
+
+
 
 
 
@@ -93,7 +124,12 @@ public class BookingPages {
         CHILDREN_ADD.click();
         CHILD_AGE_FIELD.click();
         for (int i = 0; i < pressDown+1; i++) {
-            CHILD_AGE_FIELD.sendKeys(Keys.ARROW_DOWN);
+            Selenide.actions().moveToElement(CHILD_AGE_FIELD)
+                    .sendKeys(Keys.DOWN)
+                    .pause(Duration.ofSeconds(1))
+                    .perform();
+            //CHILD_AGE_FIELD
+
         }
         CHILD_AGE_FIELD.pressEnter();
         SelenideElement childAgeCheck = $x("//select[@name='age']//option[@value='" + pressDown + "']");
@@ -101,7 +137,8 @@ public class BookingPages {
     }
 
     public boolean clickToTheSearchButton(){
-        SEARCH_BUTTON.click();
+        Selenide.actions().moveToElement(SEARCH_BUTTON).clickAndHold(SEARCH_BUTTON).pause(Duration.ofSeconds(1)).release().perform();
+        //SEARCH_BUTTON.click();
         SelenideElement confirmText = $x("//h2[contains(text(), 'Брёй-Червиния: найдено ')]");
         return confirmText.is(Condition.exist);
 
@@ -116,11 +153,38 @@ public class BookingPages {
         for (SelenideElement e: HOTEL_STARS_CHECKER) {
             if(!(Objects.equals(e.getAttribute("data-class"), stars))){
                 result = false;
-                System.out.println("================================================");
-                System.out.println("result false");
             }
         }
         return result;
+    }
+
+    public boolean chooseAHotel(){
+        HOTEL_CHOOSE_BUTTON.click();
+        Selenide.switchTo().window(1);
+
+        ROOM_SELECTOR.scrollIntoView(false).click();
+        ROOM_SELECTOR.sendKeys(Keys.DOWN);
+        ROOM_SELECTOR.pressEnter();
+        ROOM_BOOKING_BUTTON.shouldBe(Condition.exist).click();
+        SelenideElement confirmText = $x("//h1[contains(text(), 'Grand Hotel Cervino')]");
+        return confirmText.is(Condition.exist);
+    }
+
+
+    public boolean completeRegistrationProcess(String name, String surname, String email, String request){
+        FIRST_NAME_INPUT.scrollIntoView(false).click();
+        FIRST_NAME_INPUT.setValue(name).pressTab().click();
+        LAST_NAME_INPUT.setValue(surname);
+        EMAIL_INPUT.click();
+        EMAIL_INPUT.setValue(email);
+        EMAIL_INPUT_CONFIRM.click();
+        EMAIL_INPUT_CONFIRM.setValue(email);
+        RADIO_GUEST.scrollIntoView(false).click();
+        TEXTAREA.scrollIntoView(false).click();
+        TEXTAREA.setValue(request);
+        NEXT_BUTTON_TO_PAYMENT.click();
+        SelenideElement confirmText = $x("//h2[contains(text(), 'Каким способом вы хотите совершить оплату?')]");
+        return confirmText.is(Condition.exist);
     }
 
 

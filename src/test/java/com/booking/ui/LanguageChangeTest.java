@@ -9,7 +9,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ui.core.Driver;
 
-public class TestLanguageChange {
+public class LanguageChangeTest {
 
     static MainPageLanguages mainPageLanguages;
 

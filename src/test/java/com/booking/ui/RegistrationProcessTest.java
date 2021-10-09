@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import ui.core.Driver;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class TestRegistrationProcess {
+public class RegistrationProcessTest {
     static RegistrationForm registrationForm;
 
 

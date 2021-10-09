@@ -2,16 +2,14 @@ package com.booking.ui;
 
 import com.booking.pages.BookingPages;
 import com.booking.pages.MainPageLanguages;
+import com.booking.ui.testSource.BookingSource;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 import ui.core.Driver;
 
 import java.util.stream.Stream;
@@ -19,7 +17,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class TestBookingProcess {
+public class BookingProcessTest {
 
     static BookingPages bookingPages;
 
@@ -39,7 +37,7 @@ public class TestBookingProcess {
     @Test
     @Step("Switch currency to USD")
     @Order(1)
-    @Disabled
+    @Disabled // Noncompliant
     public void testChangeCurrencyToUSD(){
         Assertions.assertTrue(bookingPages.switchCurrency(), "Неправильно поменяли валюту на USD.");
     }
@@ -85,5 +83,21 @@ public class TestBookingProcess {
     @Order(6)
     public void testChooseAndCheckHotel(){
         Assertions.assertTrue(bookingPages.chooseAFiveStarHotel("5"),"Ошибка в выборе звёзд отеля");
+    }
+
+    @Test
+    @Step
+    @Order(7)
+    public void testChooseRoom(){
+        Assertions.assertTrue(bookingPages.chooseAHotel(), "Не удалось выбрать конкретный номер.");
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(BookingSource.class)
+    @Step
+    @Order(8)
+    public void testFillingFinalForm(String name, String surname, String email, String request){
+        Assertions.assertTrue(bookingPages.completeRegistrationProcess(name, surname, email, request), "Не удалось подтвердить номер.");
+
     }
 }
