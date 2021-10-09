@@ -93,6 +93,7 @@ public class TopMenuLinksTest {
 
     @Test
     @Order(5)
+    @Tag("UILinks")
     public void test5AirportTaxisTest(){
         logger.debug("Airport button");
         Assertions.assertTrue(mainPageMenu.clickAndVerify(AIRPORT_XPATCH_TAXIS_INACTIVE, AIRPORT_XPATCH_TAXIS_ACTIVE),"CSS локатор не соответствует.");
