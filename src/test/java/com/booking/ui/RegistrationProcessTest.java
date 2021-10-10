@@ -2,6 +2,7 @@ package com.booking.ui;
 
 import com.booking.pages.RegistrationForm;
 import com.booking.ui.testSource.DetailsPageSourse;
+import com.booking.ui.testSource.LoginEmail;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -20,7 +21,6 @@ public class RegistrationProcessTest {
     public static void getDriver(){
         Driver.getDriver();
         registrationForm = new RegistrationForm();
-        //logManager = LogManager.getLogger(TestTopMenuLinksSelenide.class);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().savePageSource(false).screenshots(true));
     }
 
@@ -28,6 +28,8 @@ public class RegistrationProcessTest {
     public static void closeDriver(){
         Driver.closeDriver();
     }
+
+
 
     @Test
     @Step("Переходим на страницу ввода почты")
@@ -37,15 +39,16 @@ public class RegistrationProcessTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings={"testqa5T332340124@yandex.by"})
     @Step("Вводим почту и переходим на страницу ввода пароля.")
     @Order(2)
+    @ArgumentsSource(LoginEmail.class)
     public void testEnterEmailNavigateToPasswordPage(String s){
+        System.out.println(s);
         Assertions.assertTrue(registrationForm.inputCorrectEmail(s),"Почту приняло");
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"123123!!!!Aaa"})
+    @ValueSource(strings = {"123456789aA!!!!"})
     @Step("Вводим пароль и подтверждаем страницу.")
     @Order(3)
     public void testEnterPasswordNavigateToPersDetails(String s){

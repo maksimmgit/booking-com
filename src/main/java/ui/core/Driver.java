@@ -1,8 +1,7 @@
 package ui.core;
 import com.codeborne.selenide.Configuration;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class Driver {
 
@@ -11,10 +10,12 @@ public class Driver {
         System.setProperty("webdriver.chrome.silentOutput", "true");
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         System.setProperty("chromeoptions.args", "-incognito");
+        System.setProperty("chromeoptions.args", "--disable-blink-features=AutomationControlled");
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
-        Configuration.timeout=10000;
-        open("https://booking.com");
+        Configuration.timeout=50000;
+        open("https://www.booking.com/index.ru.html");
+        //executeJavaScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
 
 
     }

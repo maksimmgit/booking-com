@@ -11,8 +11,9 @@ public class DetailsPageSourse implements ArgumentsProvider {
 
     @Override
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+        String name = "Peter" + RandomString.randomString(5);
         return Stream.of(
-                Arguments.of("DisplayName1AAc", "24", "12", "1940", "24/12/1940")
+                Arguments.of(name, "24", "12", "1945", "24/12/1945")
         );
     }
 }

@@ -47,15 +47,15 @@ public class BookingPages {
 
 
     //5 st hotel checkbox
-    private final SelenideElement HOTEL_STARS_CHECKBOX = $x("//div[@class='bui-checkbox__label filter_item css-checkbox']/span[contains(text(),'5 з')]");
+    private final SelenideElement HOTEL_STARS_CHECKBOX = $x("//div[@class='_149559c72e'][contains(text(),'5 з')]");
     private final ElementsCollection HOTEL_STARS_CHECKER = $$x("//div[@data-class]");
     private final SelenideElement HOTEL_WAIT_ELEMENT = $("div[id='filter_filter-suggestions'] a[class='filterelement js-filter__element active'] div[class='bui-checkbox__label filter_item css-checkbox ']");
 
 
     //chose a hotel button
-    private final SelenideElement HOTEL_CHOOSE_BUTTON = $x("//a[@data-click-store-id=\"sr-compset-7716268\"]");
+    private final SelenideElement HOTEL_CHOOSE_BUTTON = $x("//a[@class=\"_2d0da168c8 d98196b188 c31718c0a7 eb20944dcd d7d1faec31 d983635ef8\"]");
     //room quantity selector
-    private final SelenideElement ROOM_SELECTOR = $x("//select[@name='nr_rooms_771626806_335048290_4_41_0']");
+    private final SelenideElement ROOM_SELECTOR = $x("//select[@name='nr_rooms_23765901_278436746_2_2_0']");
     //я бронирую
     private final SelenideElement ROOM_BOOKING_BUTTON = $x("//span[@class='bui-button__text js-reservation-button__text']");
 
@@ -139,7 +139,7 @@ public class BookingPages {
     public boolean clickToTheSearchButton(){
         Selenide.actions().moveToElement(SEARCH_BUTTON).clickAndHold(SEARCH_BUTTON).pause(Duration.ofSeconds(1)).release().perform();
         //SEARCH_BUTTON.click();
-        SelenideElement confirmText = $x("//h2[contains(text(), 'Брёй-Червиния: найдено ')]");
+        SelenideElement confirmText = $x("//h1[contains(text(), 'Брёй-Червиния: найдено ')]");
         return confirmText.is(Condition.exist);
 
     }
