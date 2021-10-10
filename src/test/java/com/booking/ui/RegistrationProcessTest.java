@@ -6,6 +6,7 @@ import com.booking.ui.testSource.LoginEmail;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.apache.log4j.Logger;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
@@ -15,6 +16,7 @@ import ui.core.Driver;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RegistrationProcessTest {
     static RegistrationForm registrationForm;
+    private static Logger logger = Logger.getLogger(RegistrationProcessTest.class);
 
 
     @BeforeAll
@@ -35,6 +37,7 @@ public class RegistrationProcessTest {
     @Step("Переходим на страницу ввода почты")
     @Order(1)
     public void testRegistrationPageButton(){
+        logger.debug("Enter email address");
         Assertions.assertTrue(registrationForm.moveToEmailPage(),"Неправильно перешли по ссылке.");
     }
 
@@ -43,7 +46,7 @@ public class RegistrationProcessTest {
     @Order(2)
     @ArgumentsSource(LoginEmail.class)
     public void testEnterEmailNavigateToPasswordPage(String s){
-        System.out.println(s);
+        logger.debug("Used email address is " + s);
         Assertions.assertTrue(registrationForm.inputCorrectEmail(s),"Почту приняло");
     }
 
@@ -52,6 +55,7 @@ public class RegistrationProcessTest {
     @Step("Вводим пароль и подтверждаем страницу.")
     @Order(3)
     public void testEnterPasswordNavigateToPersDetails(String s){
+        logger.debug("Used password:"+ s);
         Assertions.assertTrue(registrationForm.inputCorrectPassword(s));
     }
 
@@ -59,6 +63,7 @@ public class RegistrationProcessTest {
     @Step("Переход в профиль")
     @Order(4)
     public void testEnterProfile(){
+        logger.debug("Moving to the profile");
         Assertions.assertTrue(registrationForm.navigateToPersonalProfile(), "Не удалось перейти в профиль");
     }
 
@@ -67,6 +72,7 @@ public class RegistrationProcessTest {
     @Order(5)
     @ArgumentsSource(DetailsPageSourse.class)
     public void testEditProfileInfo(String displayName, String dd, String mm, String yyyy, String fullDob){
+        logger.debug("Filling the profile with current name and date of birth: " + displayName +", " + fullDob);
         registrationForm.editPersonalDetails(displayName,dd,mm,yyyy);
         Assertions.assertTrue(registrationForm.checkTitle(), "Не удалось поменять правильно данные");
     }
@@ -75,6 +81,7 @@ public class RegistrationProcessTest {
     @Step("Проверка Display name")
     @Order(6)
     public void testCheckDisplayName(){
+        logger.debug("Check display name");
         Assertions.assertTrue(registrationForm.checkDisplayName(), "DisplayName не совпадает.");
     }
 
@@ -82,6 +89,7 @@ public class RegistrationProcessTest {
     @Step("Проверка DOB")
     @Order(7)
     public void testCheckDOB(){
+        logger.debug("Check date of birth");
         Assertions.assertTrue(registrationForm.checkDOB(), "DOB не совпадает.");
     }
 }

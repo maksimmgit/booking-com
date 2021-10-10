@@ -166,7 +166,7 @@ public class BookingPages {
         ROOM_SELECTOR.sendKeys(Keys.DOWN);
         ROOM_SELECTOR.pressEnter();
         ROOM_BOOKING_BUTTON.shouldBe(Condition.exist).click();
-        SelenideElement confirmText = $x("//h1[contains(text(), 'Grand Hotel Cervino')]");
+        SelenideElement confirmText = $x("//h1[contains(text(), 'Hotel Hermitage Relais & Châteaux')]");
         return confirmText.is(Condition.exist);
     }
 
@@ -183,7 +183,7 @@ public class BookingPages {
         TEXTAREA.scrollIntoView(false).click();
         TEXTAREA.setValue(request);
         NEXT_BUTTON_TO_PAYMENT.click();
-        SelenideElement confirmText = $x("//h2[contains(text(), 'Каким способом вы хотите совершить оплату?')]");
+        SelenideElement confirmText = $x("//div[contains(text(), 'Каким способом вы хотите совершить оплату?')]");
         return confirmText.is(Condition.exist);
     }
 
