@@ -1,5 +1,5 @@
-Feature: Testing Imgur api
-  As a registered user i want use an Imgur Api
+Feature: Testing api
+  As a registered user i want use an Api
 
 
   Scenario: Uploading a new image
