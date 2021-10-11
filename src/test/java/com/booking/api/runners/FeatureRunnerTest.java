@@ -12,7 +12,7 @@ import cucumber.api.junit.Cucumber;
         },
         features = "src/test/resources/features/api", glue = {"com/booking/api"}
 )
-public class FeatureRunner{
+public class FeatureRunnerTest {
 
 
 }
