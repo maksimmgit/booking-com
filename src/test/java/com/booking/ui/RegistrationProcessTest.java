@@ -1,6 +1,6 @@
 package com.booking.ui;
 
-import com.booking.pages.RegistrationForm;
+import com.booking.ui.pages.RegistrationForm;
 import com.booking.ui.testSource.DetailsPageSourse;
 import com.booking.ui.testSource.LoginEmail;
 import com.codeborne.selenide.logevents.SelenideLogger;

@@ -1,9 +1,7 @@
 package com.booking.ui;
 
-import com.booking.pages.BookingPages;
-import com.booking.pages.MainPageLanguages;
+import com.booking.ui.pages.BookingPages;
 import com.booking.ui.testSource.BookingSource;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;

@@ -1,9 +1,7 @@
-package com.booking.pages;
+package com.booking.ui.pages;
 
 import com.codeborne.selenide.*;
-import com.codeborne.selenide.selector.ByText;
 import org.openqa.selenium.Keys;
-import org.w3c.dom.html.HTMLInputElement;
 
 import java.time.Duration;
 import java.util.Objects;

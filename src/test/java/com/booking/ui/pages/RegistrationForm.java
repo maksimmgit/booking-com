@@ -1,8 +1,6 @@
-package com.booking.pages;
+package com.booking.ui.pages;
 
-import com.booking.ui.testSource.RandomString;
 import com.codeborne.selenide.*;
-import com.codeborne.selenide.selector.ByText;
 import org.openqa.selenium.Keys;
 
 import java.time.Duration;

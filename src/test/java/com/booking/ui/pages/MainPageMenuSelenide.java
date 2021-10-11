@@ -1,4 +1,4 @@
-package com.booking.pages;
+package com.booking.ui.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;

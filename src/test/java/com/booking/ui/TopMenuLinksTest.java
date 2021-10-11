@@ -1,6 +1,6 @@
 package com.booking.ui;
 
-import com.booking.pages.MainPageMenuSelenide;
+import com.booking.ui.pages.MainPageMenuSelenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
