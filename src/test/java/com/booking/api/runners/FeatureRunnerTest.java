@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
         plugin = {
                 "io.qameta.allure.cucumberjvm.AllureCucumberJvm"
         },
-        features = "src/test/resources/features/api", glue = {"com/booking/api"}
+        features = "src/test/resources/features", glue = {"com/booking/api"}
 )
 public class FeatureRunnerTest {
 
