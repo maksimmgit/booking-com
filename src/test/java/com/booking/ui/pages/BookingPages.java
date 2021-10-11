@@ -51,7 +51,7 @@ public class BookingPages {
 
 
     //chose a hotel button
-    private final SelenideElement HOTEL_CHOOSE_BUTTON = $x("//a[@class=\"_2d0da168c8 d98196b188 c31718c0a7 eb20944dcd d7d1faec31 d983635ef8\"]");
+    private final SelenideElement HOTEL_CHOOSE_BUTTON = $x("//a[@data-click-store-id=\"sr-compset-7716268\"]");
     //room quantity selector
     private final SelenideElement ROOM_SELECTOR = $x("//select[@name='nr_rooms_23765901_278436746_2_2_0']");
     //я бронирую

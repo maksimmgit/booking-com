@@ -10,7 +10,7 @@ public class LoginEmail implements ArgumentsProvider {
     @Override
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
         return Stream.of(
-                Arguments.of("emailaddress"+RandomString.randomString(5)+"@ho"+RandomString.randomString(1) +"ster.by")
+                Arguments.of("PeterJanis"+RandomString.randomString(5)+"@hoster"+RandomString.randomString(1) +".pl")
         );
     }
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class ImagesComments {
+public class ImagesCommentsTest {
     private final String url = "https://api.imgur.com/3/";
     private final String imagesUploadUri = "image";
     private final String imagesGetUri = "account/me/images";
