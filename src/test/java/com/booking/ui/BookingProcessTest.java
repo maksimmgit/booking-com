@@ -79,6 +79,7 @@ public class BookingProcessTest {
     @Order(5)
     public void testCheckSearchResultsPage(){
         logger.debug("Click to the search button");
+
         Assertions.assertTrue(bookingPages.clickToTheSearchButton(),"Неправильно перешли в результаты поиска.");
     }
 

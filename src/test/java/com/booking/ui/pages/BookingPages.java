@@ -53,7 +53,7 @@ public class BookingPages {
     //chose a hotel button
     private final SelenideElement HOTEL_CHOOSE_BUTTON = $x("//a[@data-click-store-id=\"sr-compset-7716268\"]");
     //room quantity selector
-    private final SelenideElement ROOM_SELECTOR = $x("//select[@name='nr_rooms_23765901_278436746_2_2_0']");
+    private final SelenideElement ROOM_SELECTOR = $x("//select[@name='nr_rooms_771626801_335048290_2_41_0']");
     //я бронирую
     private final SelenideElement ROOM_BOOKING_BUTTON = $x("//span[@class='bui-button__text js-reservation-button__text']");
 
@@ -137,7 +137,7 @@ public class BookingPages {
     public boolean clickToTheSearchButton(){
         Selenide.actions().moveToElement(SEARCH_BUTTON).clickAndHold(SEARCH_BUTTON).pause(Duration.ofSeconds(1)).release().perform();
         //SEARCH_BUTTON.click();
-        SelenideElement confirmText = $x("//h1[contains(text(), 'Брёй-Червиния: найдено ')]");
+        SelenideElement confirmText = $x("//h2[contains(text(), 'Брёй-Червиния: найдено ')]");
         return confirmText.is(Condition.exist);
 
     }
