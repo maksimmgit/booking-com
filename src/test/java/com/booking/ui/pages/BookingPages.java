@@ -45,7 +45,7 @@ public class BookingPages {
 
 
     //5 st hotel checkbox
-    private final SelenideElement HOTEL_STARS_CHECKBOX = $x("//div[@class='_149559c72e'][contains(text(),'5 з')]");
+    private final SelenideElement HOTEL_STARS_CHECKBOX = $x("//span[contains(text(),'5 звезд')]");
     private final ElementsCollection HOTEL_STARS_CHECKER = $$x("//div[@data-class]");
     private final SelenideElement HOTEL_WAIT_ELEMENT = $("div[id='filter_filter-suggestions'] a[class='filterelement js-filter__element active'] div[class='bui-checkbox__label filter_item css-checkbox ']");
 
