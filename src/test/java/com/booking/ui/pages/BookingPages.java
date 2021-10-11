@@ -56,9 +56,11 @@ public class BookingPages {
     private final SelenideElement HOTEL_CHOOSE_BUTTON = $(byText("Grand Hotel Cervino"));
     //room quantity selector
     private final SelenideElement ROOM_SELECTOR = $x("//select[@name='nr_rooms_771626801_335048290_2_41_0']");
+    private final SelenideElement SCROLLER_ITEM = $(byText("\n" +
+            "Предложения в Grand Hotel Cervino (Отель), Брёй-Червиния (Италия)"));
     //я бронирую
-    private final SelenideElement ROOM_BOOKING_BUTTON = $("button[id='b_tt_holder_3'] span[class='bui-button__text js-reservation-button__text']");
-
+    private final SelenideElement ROOM_BOOKING_BUTTON = $x("//span[@class=\"b-button__from-text book_now_rt_summary\"]");
+    private final SelenideElement NOTICE_ITEM = $x("//div[@class=\"notice-item\"]");
 
     //booking first name input
     private final SelenideElement FIRST_NAME_INPUT = $x("//input[@id='firstname']");
@@ -181,8 +183,8 @@ public class BookingPages {
         ROOM_SELECTOR.pressEnter();
         //ROOM_BOOKING_BUTTON.shouldBe(Condition.exist).click();
         sleep(3000);
-        ROOM_BOOKING_BUTTON.click();
-        SelenideElement confirmText = $x("//h1[contains(text(), 'Hotel Hermitage Relais & Châteaux')]");
+        ROOM_BOOKING_BUTTON.scrollIntoView(true).click();
+        SelenideElement confirmText = $(byText("Grand Hotel Cervino"));
         return confirmText.is(Condition.exist);
     }
 
@@ -203,7 +205,7 @@ public class BookingPages {
         TEXTAREA.scrollIntoView(false).click();
         TEXTAREA.setValue(request);
         NEXT_BUTTON_TO_PAYMENT.click();
-        SelenideElement confirmText = $x("//div[contains(text(), 'Каким способом вы хотите совершить оплату?')]");
+        SelenideElement confirmText = $(byText("Каким способом вы хотите совершить оплату?"));
         return confirmText.is(Condition.exist);
     }
 

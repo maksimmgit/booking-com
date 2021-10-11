@@ -13,7 +13,7 @@ public class Driver {
         System.setProperty("chromeoptions.args", "--disable-blink-features=AutomationControlled");
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
-        Configuration.timeout=60000;
+        Configuration.timeout=20000;
         open("https://www.booking.com/index.ru.html");
         //$x("//button[@data-modal-id=\"language-selection\"]").click();
         //$x("//div[@lang='ru']").click();
