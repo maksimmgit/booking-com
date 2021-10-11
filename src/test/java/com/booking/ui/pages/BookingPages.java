@@ -1,6 +1,7 @@
 package com.booking.ui.pages;
 
 import com.codeborne.selenide.*;
+import cucumber.api.java.eo.Se;
 import org.openqa.selenium.Keys;
 
 import java.time.Duration;
@@ -45,17 +46,18 @@ public class BookingPages {
 
 
     //5 st hotel checkbox
-    private final SelenideElement HOTEL_STARS_CHECKBOX = $x("//span[contains(text(),'5 звезд')]");
+    private final SelenideElement HOTEL_STARS_CHECKBOX_SPAN = $x("//span[contains(text(),'5 звезд')]");
+    private final SelenideElement HOTEL_STARS_CHECKBOX_DIV = $x("//div[contains(text(),'5 звезд')]");
     private final ElementsCollection HOTEL_STARS_CHECKER = $$x("//div[@data-class]");
     private final SelenideElement HOTEL_WAIT_ELEMENT = $("div[id='filter_filter-suggestions'] a[class='filterelement js-filter__element active'] div[class='bui-checkbox__label filter_item css-checkbox ']");
 
 
     //chose a hotel button
-    private final SelenideElement HOTEL_CHOOSE_BUTTON = $x("//a[@data-click-store-id=\"sr-compset-7716268\"]");
+    private final SelenideElement HOTEL_CHOOSE_BUTTON = $(byText("Grand Hotel Cervino"));
     //room quantity selector
     private final SelenideElement ROOM_SELECTOR = $x("//select[@name='nr_rooms_771626801_335048290_2_41_0']");
     //я бронирую
-    private final SelenideElement ROOM_BOOKING_BUTTON = $x("//span[@class='bui-button__text js-reservation-button__text']");
+    private final SelenideElement ROOM_BOOKING_BUTTON = $("button[id='b_tt_holder_3'] span[class='bui-button__text js-reservation-button__text']");
 
 
     //booking first name input
@@ -71,6 +73,11 @@ public class BookingPages {
     private final SelenideElement TEXTAREA = $x("//textarea[@class='bui-form__control bui-input-textarea bp-special-requests__requests js-special-requests__requests']");
     //переход к платёжным данным
     private final SelenideElement NEXT_BUTTON_TO_PAYMENT = $x("//span[@class='bui-button__icon bui-button__icon--end js-button__icon']");
+
+    private final SelenideElement LEAVING_USERS = $x("//div[@id=\"retain-leaving-users__modal\"]");
+
+    private final SelenideElement CLOSE_BUTTON = $x("//button[@class=' bui-button bui-button--secondary e2e-retain-leaving-users__close-button bp-button']");
+
 
 
 
@@ -137,14 +144,23 @@ public class BookingPages {
     public boolean clickToTheSearchButton(){
         Selenide.actions().moveToElement(SEARCH_BUTTON).clickAndHold(SEARCH_BUTTON).pause(Duration.ofSeconds(1)).release().perform();
         //SEARCH_BUTTON.click();
+        boolean result = false;
         SelenideElement confirmText = $x("//h2[contains(text(), 'Брёй-Червиния: найдено ')]");
-        return confirmText.is(Condition.exist);
+        SelenideElement confirmText1 = $x("//h1[contains(text(), 'Брёй-Червиния: найдено ')]");
+        if(confirmText1.is(Condition.exist) || confirmText.is(Condition.exist))
+            result = true;
+
+        return result;
 
     }
 
     public boolean chooseAFiveStarHotel(String stars){
-        HOTEL_STARS_CHECKBOX.scrollIntoView(true);
-        HOTEL_STARS_CHECKBOX.click();
+        if(HOTEL_STARS_CHECKBOX_DIV.is(Condition.exist)){
+            HOTEL_STARS_CHECKBOX_DIV.scrollIntoView(true).click();
+        }else{
+            HOTEL_STARS_CHECKBOX_SPAN.scrollIntoView(true).click();
+        }
+
         $("div[class='sr-usp-overlay__message'] div:nth-child(2)").shouldNotBe(Condition.visible);
         //HOTEL_WAIT_ELEMENT.shouldBe(Condition.exist);
         boolean result = true;
@@ -163,13 +179,19 @@ public class BookingPages {
         ROOM_SELECTOR.scrollIntoView(false).click();
         ROOM_SELECTOR.sendKeys(Keys.DOWN);
         ROOM_SELECTOR.pressEnter();
-        ROOM_BOOKING_BUTTON.shouldBe(Condition.exist).click();
+        //ROOM_BOOKING_BUTTON.shouldBe(Condition.exist).click();
+        sleep(3000);
+        ROOM_BOOKING_BUTTON.click();
         SelenideElement confirmText = $x("//h1[contains(text(), 'Hotel Hermitage Relais & Châteaux')]");
         return confirmText.is(Condition.exist);
     }
 
 
     public boolean completeRegistrationProcess(String name, String surname, String email, String request){
+        sleep(5000);
+        if(LEAVING_USERS.exists()){
+            CLOSE_BUTTON.click();
+        }
         FIRST_NAME_INPUT.scrollIntoView(false).click();
         FIRST_NAME_INPUT.setValue(name).pressTab().click();
         LAST_NAME_INPUT.setValue(surname);
