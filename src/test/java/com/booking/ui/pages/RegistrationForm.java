@@ -132,7 +132,7 @@ public class RegistrationForm {
         //CREATE_ACCOUNT_BUTTON.click();
         Selenide.actions().moveToElement(CREATE_ACCOUNT_BUTTON)
                 .clickAndHold()
-                .pause(Duration.ofSeconds(15))
+                .pause(Duration.ofSeconds(35))
                 .release()
                 .perform();
 
