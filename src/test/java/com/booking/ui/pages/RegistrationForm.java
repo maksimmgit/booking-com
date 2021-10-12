@@ -108,12 +108,9 @@ public class RegistrationForm {
 
 
     public boolean inputCorrectEmail(String s){
-        sleep(1000);
         EMAIL_INPUT_FORM.click();
         EMAIL_INPUT_FORM.setValue(s);
-        sleep(1000);
         EMAIL_INPUT_FORM.pressEnter();
-        //EMAIL_BUTTON_SUBMIT.click();
         boolean result = false;
         if(PASSWORD_PAGE_CONFIRMATIOR.is(not(Condition.exist))){
             result = true;
@@ -122,17 +119,13 @@ public class RegistrationForm {
     }
 
     public boolean inputCorrectPassword(String s) {
-        sleep(1000);
         NEW_PASSWORD_FORM.click();
         NEW_PASSWORD_FORM.setValue(s);
-        sleep(1000);
         NEW_PASSWORD_CONFIRMATION.click();
         NEW_PASSWORD_CONFIRMATION.setValue(s);
-        sleep(1000);
-        //CREATE_ACCOUNT_BUTTON.click();
         Selenide.actions().moveToElement(CREATE_ACCOUNT_BUTTON)
                 .clickAndHold()
-                .pause(Duration.ofSeconds(35))
+                .pause(Duration.ofSeconds(18))
                 .release()
                 .perform();
 
@@ -171,14 +164,11 @@ public class RegistrationForm {
         SAVE_TITLE.click();
 
 
-        //System.out.println("getAttribute = " + EDIT_DISPLAY_NAME.getAttribute("aria-disabled"));
         EDIT_DISPLAY_NAME.shouldBe(Condition.attribute("aria-disabled","false"));
         EDIT_DISPLAY_NAME.click();
         INPUT_DISPLAY_NAME.click();
         INPUT_DISPLAY_NAME.setValue(displayName);
         SAVE_DISPLAY_NAME.click();
-        //CHECK_GREEN_TICK_CSS.shouldBe(appear);
-        //CHECK_GREEN_TICK1.shouldBe(appear);
         Selenide.actions()
                 .moveToElement(SAVE_DISPLAY_NAME)
                 .clickAndHold()
@@ -189,12 +179,6 @@ public class RegistrationForm {
 
 
         EDIT_DOB_DISABLED.shouldNotBe(exist);
-/*        Selenide.actions()
-                .moveToElement(EDIT_DOB_DISABLED)
-                .clickAndHold()
-                .pause(Duration.ofSeconds(5))
-                .click()
-                .perform();*/
         EDIT_DOB.click();
         INPUT_DD.click();
         INPUT_DD.setValue(DD);

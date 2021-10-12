@@ -18,7 +18,6 @@ public class ImagesCommentsTest {
     private final String imagesGetUri = "account/me/images";
 
     String galleryId = "SmvdfMO";
-    //private final String imagesComment = String.format("gallery/%s/comment", galleryId);
     private final String imagesComment = "gallery/SmvdfMO/comment/";
     private final String imageGalleryVotes = String.format("gallery/%s/votes", galleryId);
 
@@ -41,8 +40,6 @@ public class ImagesCommentsTest {
                 .extract()
                 .jsonPath()
                 .get();
-
-        System.out.println(respObj.get("link"));
     }
 
     @When("^I am sending a post request to upload image response code is (\\d+)$")
@@ -64,7 +61,6 @@ public class ImagesCommentsTest {
                 .extract()
                 .jsonPath()
                 .getMap("data");
-        System.out.println(respObj.get("id"));
 
     }
 
@@ -95,7 +91,6 @@ public class ImagesCommentsTest {
                 .extract()
                 .jsonPath()
                 .get();
-
     }
 
     @Then("i can get gallery votes")
@@ -114,6 +109,5 @@ public class ImagesCommentsTest {
         System.out.println("Upvotes: " + respObj.get("ups"));
         System.out.println("Downvotes: " + respObj.get("downs"));
     }
-
 
 }

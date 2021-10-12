@@ -54,5 +54,4 @@ public class MainPageLanguages {
         return PL_CHECK.is(Condition.exist);
     }
 
-
 }

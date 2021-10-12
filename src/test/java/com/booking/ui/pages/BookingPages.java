@@ -86,16 +86,13 @@ public class BookingPages {
 
 
 
-
-
     public boolean switchCurrency(){
         CURRENCY_BUTTON.click();
         USD_CURRENCY_BUTTON.click();
         return USD_CURRENCY_BUTTON_CHECK.is(Condition.exist);
     }
 
-    //здесь ловим выпадающее меню с нужным параметром, ждём его и кликаем.
-    //При случае переделать с %s, чтобы была красивая строка
+
     public boolean chooseDestination(String query, String matches){
 
         ACCEPT_COOKIES.shouldBe(Condition.visible).click();
@@ -135,7 +132,6 @@ public class BookingPages {
                     .sendKeys(Keys.DOWN)
                     .pause(Duration.ofSeconds(1))
                     .perform();
-            //CHILD_AGE_FIELD
 
         }
         CHILD_AGE_FIELD.pressEnter();
@@ -181,8 +177,6 @@ public class BookingPages {
         ROOM_SELECTOR.scrollIntoView(false).click();
         ROOM_SELECTOR.sendKeys(Keys.DOWN);
         ROOM_SELECTOR.pressEnter();
-        //ROOM_BOOKING_BUTTON.shouldBe(Condition.exist).click();
-        sleep(3000);
         ROOM_BOOKING_BUTTON.scrollIntoView(true).click();
         SelenideElement confirmText = $(byText("Grand Hotel Cervino"));
         return confirmText.is(Condition.exist);
@@ -190,7 +184,6 @@ public class BookingPages {
 
 
     public boolean completeRegistrationProcess(String name, String surname, String email, String request){
-        sleep(5000);
         if(LEAVING_USERS.exists()){
             CLOSE_BUTTON.click();
         }
